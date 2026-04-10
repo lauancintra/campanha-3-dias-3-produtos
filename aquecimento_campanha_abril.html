@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Aquecimento · Campanha 13–15 Abril · Villa Veneza</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f1ec;color:#2c2c2a;line-height:1.6}
+.header{background:#2c2c2a;color:#fff;padding:40px;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-50px;right:-50px;width:240px;height:240px;background:rgba(255,255,255,0.04);border-radius:50%}
+.hbadge{display:inline-block;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.22);border-radius:20px;padding:3px 14px;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.header h1{font-size:28px;font-weight:700;margin-bottom:6px}
+.header h1 span{color:#e7d7c8}
+.header p{font-size:14px;opacity:.75;max-width:600px}
+.hmeta{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap}
+.hmi{background:rgba(255,255,255,0.09);border-radius:8px;padding:8px 14px;font-size:12px}
+.hmi strong{display:block;font-size:10px;opacity:.6;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.container{max-width:1060px;margin:0 auto;padding:36px 24px}
+/* TABS */
+.tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:8px;border:1px solid #cec6c3;font-size:13px;cursor:pointer;background:#fff;color:#666;transition:all .15s}
+.tab.active{background:#2c2c2a;color:#fff;border-color:#2c2c2a}
+.panel{display:none}
+.panel.active{display:block}
+/* TIMELINE */
+.timeline{position:relative;margin-bottom:32px}
+.timeline::before{content:'';position:absolute;left:28px;top:0;bottom:0;width:2px;background:#e8e2d9}
+.tl-item{display:flex;gap:20px;margin-bottom:20px;position:relative}
+.tl-dot{width:56px;height:56px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;text-align:center;line-height:1.2;z-index:1;border:3px solid #f4f1ec}
+.dot-warm{background:#e7d7c8;color:#2c2c2a}
+.dot-hot{background:#2c2c2a;color:#e7d7c8}
+.dot-fire{background:#cec6c3;color:#2c2c2a}
+.tl-content{flex:1;background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.tl-date{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.tl-title{font-size:15px;font-weight:700;color:#2c2c2a;margin-bottom:6px}
+.tl-desc{font-size:13px;color:#555;line-height:1.55;margin-bottom:10px}
+/* CANAL BADGES */
+.canais{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.cbadge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+.cb-email{background:#e1f5ee;color:#0F6E56}
+.cb-wpp{background:#e8f8ee;color:#1a7a3c}
+.cb-social{background:#eaf2ff;color:#185FA5}
+/* COPY BOX */
+.copy{background:#f9f6f2;border-left:3px solid #cec6c3;padding:10px 14px;margin-top:8px;font-size:13px;color:#2c2c2a;font-style:italic;line-height:1.6;border-radius:0}
+.copy strong{font-style:normal;font-size:11px;color:#888;display:block;margin-bottom:3px}
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:20px}
+@media(max-width:640px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.card-label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.dot-label{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.dl-e{background:#1D9E75}
+.dl-w{background:#25d366}
+.dl-s{background:#185FA5}
+.dl-a{background:#b7770d}
+.card h4{font-size:14px;font-weight:700;color:#2c2c2a;margin-bottom:6px}
+.card p{font-size:13px;color:#555;line-height:1.55}
+.pill{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap}
+.pill-g{background:#eafaf1;color:#1e8449}
+.pill-a{background:#fef9ec;color:#b7770d}
+.pill-b{background:#eaf2ff;color:#1a6db7}
+.pill-r{background:#fdf3f3;color:#b93c3c}
+/* STITLE */
+.stitle{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px;padding-bottom:6px;border-bottom:1px solid #e8e2d9}
+/* FCARD */
+.fcard{background:#fff;border-radius:14px;padding:18px 20px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+/* ALERT */
+.alert{background:#fef9ec;border-radius:10px;padding:12px 16px;font-size:13px;color:#7d4e00;margin-bottom:14px}
+.alert strong{font-weight:700;display:block;margin-bottom:2px}
+.insight{background:#eaf2ff;border-radius:10px;padding:12px 16px;font-size:13px;color:#1a4a7a;margin-bottom:14px}
+.insight strong{font-weight:700;display:block;margin-bottom:2px}
+/* REGRA */
+.regra{background:#2c2c2a;color:#fff;border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.regra h4{font-size:14px;font-weight:700;color:#e7d7c8;margin-bottom:6px}
+.regra p{font-size:13px;opacity:.8;line-height:1.6}
+/* PROGRESSBAR */
+.prog-wrap{margin-bottom:20px}
+.prog-row{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.prog-label{font-size:12px;color:#555;width:120px;flex-shrink:0}
+.prog-bar-wrap{flex:1;background:#f0ebe4;border-radius:20px;height:8px}
+.prog-bar{height:8px;border-radius:20px;background:#2c2c2a}
+.prog-val{font-size:12px;color:#888;width:36px;text-align:right;flex-shrink:0}
+/* TIMING BADGES */
+.timing{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tbadge{font-size:11px;background:#f4f1ec;color:#666;border:1px solid #ddd;border-radius:20px;padding:2px 10px}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="hbadge">Estratégia de Aquecimento · Pré-Campanha</div>
+  <h1>Aquecimento <span>10–12 de Abril</span> · Villa Veneza</h1>
+  <p>3 dias de antecipação antes da campanha principal · e-mail + WhatsApp + social · sem revelar os produtos nem o desconto</p>
+  <div class="hmeta">
+    <div class="hmi"><strong>Início aquecimento</strong>Sex 10 Abr</div>
+    <div class="hmi"><strong>Fim aquecimento</strong>Dom 12 Abr</div>
+    <div class="hmi"><strong>Início campanha</strong>Seg 13 Abr</div>
+    <div class="hmi"><strong>Princípio</strong>Curiosidade → Desejo → Ação</div>
+  </div>
+</div>
+
+<div class="container">
+<div class="tabs">
+  <button class="tab active" onclick="show('estrategia',this)">Estratégia geral</button>
+  <button class="tab" onclick="show('d10',this)">Sex 10/04</button>
+  <button class="tab" onclick="show('d11',this)">Sáb 11/04</button>
+  <button class="tab" onclick="show('d12',this)">Dom 12/04</button>
+  <button class="tab" onclick="show('regras',this)">O que não fazer</button>
+</div>
+
+<!-- ESTRATÉGIA GERAL -->
+<div class="panel active" id="estrategia">
+  <div class="stitle">Lógica do aquecimento — por que funciona aqui</div>
+  <div class="insight">
+    <strong>Dado interno que prova o conceito</strong>
+    A campanha "Prévia frete grátis páscoa (base quente)" teve 14,8% de abertura com 1.045 envios vs 6,3% da campanha para toda a base com 14.000+ envios. Quem recebe antecipação antes do evento abre mais, clica mais e compra mais. O aquecimento replica esse efeito para os 3 dias.
+  </div>
+
+  <div class="stitle">Os 3 dias têm objetivos distintos</div>
+  <div class="grid3">
+    <div class="card">
+      <span class="pill pill-a" style="display:inline-block;margin-bottom:8px">Sex 10/04</span>
+      <h4>Despertar curiosidade</h4>
+      <p>Anunciar que "algo especial vem aí na segunda" sem revelar o quê. Criar o gatilho de antecipação. Tom: mistério leve + pertencimento.</p>
+      <div class="timing"><span class="tbadge">E-mail</span><span class="tbadge">WhatsApp</span></div>
+    </div>
+    <div class="card">
+      <span class="pill pill-a" style="display:inline-block;margin-bottom:8px">Sáb 11/04</span>
+      <h4>Construir desejo</h4>
+      <p>Mostrar os produtos sem revelar o desconto. "Essas peças vão ter algo especial na semana que vem." Foco em fazer a cliente querer a peça pelo produto, não pela oferta.</p>
+      <div class="timing"><span class="tbadge">E-mail</span><span class="tbadge">Social</span></div>
+    </div>
+    <div class="card">
+      <span class="pill pill-r" style="display:inline-block;margin-bottom:8px">Dom 12/04</span>
+      <h4>Criar urgência antecipada</h4>
+      <p>"Amanhã começa" — revelar que haverá desconto sem revelar quanto. Criar senso de que quem não abrir o e-mail de segunda vai perder. Segmento VIP recebe preview.</p>
+      <div class="timing"><span class="tbadge">WhatsApp</span><span class="tbadge">E-mail VIP</span></div>
+    </div>
+  </div>
+
+  <div class="stitle">Temperatura do público ao longo dos dias</div>
+  <div class="prog-wrap fcard">
+    <div class="prog-row">
+      <div class="prog-label">Sex 10 · Base fria</div>
+      <div class="prog-bar-wrap"><div class="prog-bar" style="width:20%"></div></div>
+      <div class="prog-val">20%</div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label">Sáb 11 · Curiosa</div>
+      <div class="prog-bar-wrap"><div class="prog-bar" style="width:50%"></div></div>
+      <div class="prog-val">50%</div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label">Dom 12 · Aquecida</div>
+      <div class="prog-bar-wrap"><div class="prog-bar" style="width:75%"></div></div>
+      <div class="prog-val">75%</div>
+    </div>
+    <div class="prog-row">
+      <div class="prog-label">Seg 13 · Pronta pra comprar</div>
+      <div class="prog-bar-wrap"><div class="prog-bar" style="width:100%"></div></div>
+      <div class="prog-val">100%</div>
+    </div>
+    <p style="font-size:12px;color:#aaa;margin-top:12px;">Sem aquecimento, a base chega no Dia 13 no estado "base fria" — começa do zero. Com aquecimento, chega em 75% de temperatura e precisa de muito menos estímulo para converter.</p>
+  </div>
+
+  <div class="stitle">Segmentação recomendada para o aquecimento</div>
+  <div class="grid2">
+    <div class="fcard">
+      <h4 style="font-size:14px;margin-bottom:8px;">Segmento VIP (base quente — comprou nos últimos 60 dias)</h4>
+      <p style="font-size:13px;color:#555;">Recebe preview no domingo com tom exclusivo: "você vai ver primeiro". Cria pertencimento e lealdade. É o segmento que mais vai converter nos dias 13–15.</p>
+    </div>
+    <div class="fcard">
+      <h4 style="font-size:14px;margin-bottom:8px;">Base geral (toda a lista ativa)</h4>
+      <p style="font-size:13px;color:#555;">Recebe os aquecimentos de sexta e sábado com tom de teaser. No domingo, recebe só o WPP de "amanhã começa" — sem o preview VIP.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DIA 10 -->
+<div class="panel" id="d10">
+  <div class="tl-item" style="margin-bottom:0">
+    <div style="background:#f9f6f2;border-radius:14px;padding:20px 22px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,.05);border-left:4px solid #cec6c3">
+      <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Sexta-feira · 10 de Abril · Objetivo: despertar curiosidade</div>
+      <div style="font-size:16px;font-weight:700;color:#2c2c2a;margin-bottom:4px">Plantar a semente — "algo especial vem aí"</div>
+      <p style="font-size:13px;color:#666;">Não revelar produto nem desconto. Apenas criar o gatilho de antecipação e fazer a cliente prestar atenção nos próximos dias.</p>
+    </div>
+  </div>
+
+  <div style="height:16px"></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-label"><span class="dot-label dl-e"></span> E-mail · Edrone · 11h</div>
+      <h4>Assunto</h4>
+      <div class="copy">
+        <strong>Opção A — mistério</strong>
+        Tem algo especial chegando na segunda. Você vai querer saber 👀
+      </div>
+      <div class="copy">
+        <strong>Opção B — pertencimento</strong>
+        Só pra quem é da Vila: novidade na segunda que não vai durar
+      </div>
+      <h4 style="margin-top:12px;">Corpo do e-mail</h4>
+      <p>Sem mostrar os produtos. Apenas uma mensagem curta e direta — fundo claro, logotipo, texto central e 1 botão de CTA.</p>
+      <div class="copy">
+        <strong>Texto sugerido</strong>
+        Oi [nome],<br><br>
+        Temos uma surpresa preparada pra você na semana que vem. 🖤<br><br>
+        São peças que a gente selecionou com cuidado — e segunda-feira, dia 13, vai ter algo especial que não vai se repetir.<br><br>
+        Fica de olho no seu e-mail na segunda bem cedinho 😉<br><br>
+        Com carinho,<br>
+        Ju da Villa Veneza
+      </div>
+      <div class="timing">
+        <span class="tbadge">Envio: 11h sexta</span>
+        <span class="tbadge">Sem CTA de compra</span>
+        <span class="tbadge">Template simples — 1 bloco</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="dot-label dl-w"></span> WhatsApp · Martz · 14h</div>
+      <h4>Depois do e-mail · Tom: conversa de amiga</h4>
+      <p style="margin-bottom:8px;">Mais curto e mais direto. Cria expectativa sem entregar nada. O nome personalizado aumenta o senso de que é uma mensagem exclusiva.</p>
+      <div class="copy">
+        <strong>Copy pronta</strong>
+        Oi *{{1}}*! 🖤 Passando só pra te contar que na *segunda-feira, dia 13*, a Villa Veneza vai ter uma surpresa especial pra você.<br><br>Fica de olho, viu? Vai valer a pena 😉<br><br>Beijos, Ju da Villa Veneza
+      </div>
+      <div class="timing">
+        <span class="tbadge">Disparo: 14h</span>
+        <span class="tbadge">Sem link de produto</span>
+        <span class="tbadge">Toda a base ativa</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert">
+    <strong>Regra do dia 10 — não entregar nada</strong>
+    O objetivo é zero informação sobre produto ou desconto. Qualquer detalhe que vazar hoje reduz o impacto do sábado e do domingo. A curiosidade só funciona quando é real — não saciada antes da hora.
+  </div>
+</div>
+
+<!-- DIA 11 -->
+<div class="panel" id="d11">
+  <div style="background:#f9f6f2;border-radius:14px;padding:20px 22px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,.05);border-left:4px solid #cec6c3;margin-bottom:16px">
+    <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Sábado · 11 de Abril · Objetivo: construir desejo pelo produto</div>
+    <div style="font-size:16px;font-weight:700;color:#2c2c2a;margin-bottom:4px">Mostrar as peças — sem revelar o desconto</div>
+    <p style="font-size:13px;color:#666;">Apresentar os 3 produtos como "as peças da semana especial". A cliente precisa querer a peça pelo produto antes de saber o preço. Quem quer a peça converte muito mais do que quem só quer o desconto.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-label"><span class="dot-label dl-e"></span> E-mail · Edrone · 10h</div>
+      <h4>Assunto</h4>
+      <div class="copy">
+        <strong>Opção A — as peças como protagonistas</strong>
+        As 3 peças que vão estrelar a nossa semana especial 🖤
+      </div>
+      <div class="copy">
+        <strong>Opção B — estilo de vida</strong>
+        Preto, linho e elegância: essas peças têm algo especial na segunda
+      </div>
+      <h4 style="margin-top:12px;">Estrutura do e-mail</h4>
+      <p>Mostrar as 3 peças com foto — mas sem preços e sem botão de compra para cada uma. Apenas 1 CTA no final: "Descubra na segunda" ou "Salva esse e-mail para segunda".</p>
+      <div class="copy">
+        <strong>Texto de introdução</strong>
+        Oi [nome],<br><br>
+        Lembra que a gente contou que vinha surpresa? 😉<br><br>
+        Olha só as peças que vão estar no centro da nossa semana especial, começando na segunda-feira, dia 13.<br><br>
+        [foto Pantalona] [foto Cenoura] [foto Reta]<br><br>
+        Calça Pantalona com Cinto Preta · Cenoura Botões Preta · Reta com Botão Preta<br><br>
+        A surpresa você vai descobrir na segunda. Mas pode ir se preparando 🖤<br><br>
+        Beijos, Ju da Villa Veneza
+      </div>
+      <div class="timing">
+        <span class="tbadge">Envio: 10h</span>
+        <span class="tbadge">3 produtos visíveis</span>
+        <span class="tbadge">Sem preço, sem CTA de compra</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="dot-label dl-s"></span> Social (Instagram) · 15h</div>
+      <h4>Post ou Stories — aquecimento orgânico</h4>
+      <p style="margin-bottom:8px;">Sábado é o dia de maior consumo de redes sociais do Brasil. Um Stories ou post com as peças reforça o aquecimento para quem não abriu o e-mail.</p>
+      <div class="copy">
+        <strong>Caption / legenda sugerida</strong>
+        Tem coisa boa chegando na semana que vem 🖤<br>
+        Essas 3 peças estão de olho em você.<br>
+        Descubra na segunda, dia 13. 👀<br><br>
+        #VillaVeneza #CalçaLinho #ModaFeminina
+      </div>
+      <div class="copy">
+        <strong>Stories (sequência de 2)</strong>
+        Stories 1: Foto da Pantalona com texto "O que essas 3 peças têm em comum?" → enquete "Já quero saber / Conta já!"<br><br>
+        Stories 2: "Segunda-feira, dia 13. Fique de olho no seu e-mail 🖤"
+      </div>
+      <div class="timing">
+        <span class="tbadge">Post: 15h sábado</span>
+        <span class="tbadge">Stories: 16h</span>
+        <span class="tbadge">Pico de engajamento IG sábado tarde</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>Por que mostrar os produtos antes do desconto?</strong>
+    Quando a cliente descobre o desconto sem conhecer o produto, ela compra pela oferta — e pode devolver ou não recomprar. Quando ela vê o produto primeiro, cria apego emocional. O desconto vira o gatilho de decisão, não o motivo da compra. LTV mais alto, menos arrependimento.
+  </div>
+</div>
+
+<!-- DIA 12 -->
+<div class="panel" id="d12">
+  <div style="background:#f9f6f2;border-radius:14px;padding:20px 22px;width:100%;box-shadow:0 2px 8px rgba(0,0,0,.05);border-left:4px solid #2c2c2a;margin-bottom:16px">
+    <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Domingo · 12 de Abril · Objetivo: criar urgência antecipada</div>
+    <div style="font-size:16px;font-weight:700;color:#2c2c2a;margin-bottom:4px">"Amanhã começa" — revelar que há desconto, sem dizer quanto</div>
+    <p style="font-size:13px;color:#666;">O domingo é o dia de menor competição de e-mail marketing. A base já está aquecida pela sexta e pelo sábado. Hoje a cliente sabe que amanhã tem oferta — mas não sabe o valor. Isso cria o gatilho de "preciso abrir o e-mail de segunda cedo".</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-label"><span class="dot-label dl-w"></span> WhatsApp · Martz · Base geral · 10h</div>
+      <h4>Revelar que há oferta — sem revelar quanto</h4>
+      <div class="copy">
+        <strong>Copy pronta — base geral</strong>
+        Oi *{{1}}*! 🖤 Amanhã começa!<br><br>
+        As 3 peças que a gente mostrou estão com um desconto especial — *1 por dia*, começando *amanhã, segunda, dia 13*.<br><br>
+        Fique de olho no seu e-mail bem cedinho 😉<br><br>
+        Beijos, Ju da Villa Veneza
+      </div>
+      <div class="timing">
+        <span class="tbadge">Disparo: 10h</span>
+        <span class="tbadge">Toda a base ativa</span>
+        <span class="tbadge">Sem revelar % de desconto</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="dot-label dl-e"></span> E-mail · Edrone · Segmento VIP · 11h</div>
+      <h4>Preview exclusivo para clientes recentes</h4>
+      <p style="margin-bottom:8px;">Base quente (comprou nos últimos 60 dias) recebe um e-mail de "você vê primeiro". Cria lealdade e aumenta taxa de abertura no dia 13.</p>
+      <div class="copy">
+        <strong>Assunto VIP</strong>
+        [Nome], você vê antes: amanhã tem 10% OFF na Pantalona Preta 🖤
+      </div>
+      <div class="copy">
+        <strong>Texto VIP</strong>
+        Oi [nome],<br><br>
+        Como você é cliente especial da Villa Veneza, a gente quis te contar primeiro 🖤<br><br>
+        Amanhã, dia 13, a *Calça Pantalona com Cinto Preta* vai estar com *10% OFF por 1 dia*. Na terça é outra peça. Na quarta, outra.<br><br>
+        Você já sabe. Amanhã cedo, abre o e-mail 😉<br><br>
+        Beijos, Ju da Villa Veneza
+      </div>
+      <div class="timing">
+        <span class="tbadge">Envio: 11h</span>
+        <span class="tbadge">Só base quente (últimos 60 dias)</span>
+        <span class="tbadge">Revela produto + % do dia 13 apenas</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-label"><span class="dot-label dl-s"></span> Social (Instagram) · Stories · 18h</div>
+      <h4>"Amanhã começa" — contagem regressiva</h4>
+      <div class="copy">
+        <strong>Stories (sequência de 3)</strong>
+        Stories 1: Foto das 3 peças com texto "Amanhã começa 🖤"<br><br>
+        Stories 2: "1 peça por dia · 3 dias · desconto especial" — sem revelar %<br><br>
+        Stories 3: "Ativa as notificações do e-mail de vocês 📩 Começa amanhã cedo"
+      </div>
+      <div class="timing">
+        <span class="tbadge">Stories: 18h</span>
+        <span class="tbadge">Domingo tem pico de Stories às 17h–20h</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-label"><span class="dot-label dl-a"></span> Lógica de segmentação</div>
+      <h4>Quem recebe o quê no domingo</h4>
+      <p style="line-height:1.8;font-size:13px;color:#555;">
+        <strong style="color:#2c2c2a;">Base quente (últ. 60 dias):</strong> WPP às 10h + e-mail VIP às 11h com produto + % do dia 13.<br>
+        <strong style="color:#2c2c2a;">Base geral (resto da lista):</strong> Só WPP às 10h — "amanhã começa, fica de olho no e-mail".<br>
+        <strong style="color:#2c2c2a;">Social (Instagram):</strong> Todo o público orgânico que não está na lista.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- O QUE NÃO FAZER -->
+<div class="panel" id="regras">
+  <div class="stitle">O que não fazer — erros que destroem o aquecimento</div>
+  <div class="grid2">
+    <div class="card" style="border-top:3px solid #c0392b">
+      <h4 style="color:#c0392b;margin-bottom:8px;">❌ Revelar o % de desconto antes do dia 13</h4>
+      <p>Se a cliente souber que é 10% OFF desde sexta, a urgência do dia 13 cai drasticamente. O aquecimento funciona porque ela sabe que vem algo, mas não sabe o quanto. A descoberta no dia é o gatilho de abertura.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #c0392b">
+      <h4 style="color:#c0392b;margin-bottom:8px;">❌ Enviar mais de 1 e-mail por dia durante o aquecimento</h4>
+      <p>Você já envia e-mails diariamente — o aquecimento precisa se destacar, não se misturar com o volume normal. O e-mail de aquecimento substitui o envio do dia, não é adicional.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #c0392b">
+      <h4 style="color:#c0392b;margin-bottom:8px;">❌ Mostrar os 3 produtos com os preços no e-mail de sábado</h4>
+      <p>Preço sem oferta parece comunicação normal. O ponto do sábado é criar desejo pela peça — não pelo preço. O preço com desconto é a revelação do dia 13, 14 e 15.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #c0392b">
+      <h4 style="color:#c0392b;margin-bottom:8px;">❌ Fazer o aquecimento no WhatsApp com o mesmo texto do e-mail</h4>
+      <p>E-mail e WhatsApp precisam ser complementares, não idênticos. Quem recebe os dois e vê a mesma mensagem perde a sensação de exclusividade e o WhatsApp perde valor como canal.</p>
+    </div>
+  </div>
+
+  <div class="stitle">Checklist de execução — antes de disparar</div>
+  <div class="fcard">
+    <p style="font-size:13px;color:#555;line-height:2;">
+      ☐ Variável de nome corrigida no Edrone antes do primeiro disparo<br>
+      ☐ Segmento "base quente" criado na Edrone (comprou nos últimos 60 dias)<br>
+      ☐ Template do e-mail de aquecimento simples — sem excesso de produtos<br>
+      ☐ E-mail de sexta não tem link de compra (só curiosidade)<br>
+      ☐ E-mail de sábado mostra os produtos mas sem preço e sem botão de compra individual<br>
+      ☐ E-mail VIP de domingo revela apenas o produto + % do dia 13, não dos 3 dias<br>
+      ☐ WPP de domingo enviado antes do e-mail VIP (10h vs 11h)<br>
+      ☐ Stories do sábado e do domingo programados com antecedência no Canva<br>
+      ☐ Equipe alinhada que na segunda o e-mail principal sai às 8h — não pode atrasar
+    </p>
+  </div>
+
+  <div class="regra">
+    <h4>Princípio central do aquecimento</h4>
+    <p>O aquecimento não existe para vender — existe para criar o estado mental certo na cliente quando a oferta chegar. Uma cliente que chegou no dia 13 já sabendo que a Pantalona ia estar em oferta vai abrir o e-mail das 8h muito antes de uma cliente que recebe a campanha fria. A abertura mais alta no dia 13 é o objetivo real do aquecimento — e o dado da sua própria base (14,8% vs 6,3%) prova que funciona.</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
